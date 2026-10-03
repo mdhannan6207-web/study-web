@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Study Hub - Class 1 to 12</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f7ff;
+    color: #222;
+}
+
+header {
+    background: #2563eb;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 38px;
+}
+
+nav {
+    background: #111827;
+    padding: 14px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 8px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+.box {
+    background: white;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px #ccc;
+}
+
+h2 {
+    color: #2563eb;
+}
+
+select,
+input {
+    width: 100%;
+    max-width: 450px;
+    padding: 13px;
+    margin: 7px 0;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    margin: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.card {
+    display: inline-block;
+    width: 200px;
+    margin: 8px;
+    padding: 18px;
+    background: #eef4ff;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.card:hover {
+    background: #dbeafe;
+}
+
+.chapter {
+    background: #f8fafc;
+    padding: 15px;
+    margin: 10px 0;
+    border-left: 5px solid #2563eb;
+    border-radius: 8px;
+}
+
+.hidden {
+    display: none;
+}
+
+#message {
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+footer {
+    background: #111827;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+pre {
+    background: #111827;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.quiz-option {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    text-align: left;
+    background: #eef4ff;
+    color: #222;
+}
+
+@media (max-width: 600px) {
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px;
+    }
+
+    .card {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<header>
+    <h1>📚 Study Hub</h1>
+    <p>Learn • Practice • Improve</p>
+    <p>Class 1 to 12 | Bihar Board & CBSE</p>
+</header>
+
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#subjects">Subjects</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#coding">Coding</a>
+</nav>
+
+
+<div class="container">
+
+
+<!-- HOME -->
+
+<section id="home" class="box">
+
+<h2>🎓 Choose Your Class</h2>
+
+<label><b>Select Board</b></label>
+
+<select id="board">
+<option value="">-- Select Board --</option>
+<option value="Bihar Board">Bihar Board</option>
+<option value="CBSE">CBSE</option>
+</select>
+
+
+<label><b>Select Class</b></label>
+
+<select id="className">
+
+<option value="">-- Select Class --</option>
+
+<option value="1">Class 1</option>
+<option value="2">Class 2</option>
+<option value="3">Class 3</option>
+<option value="4">Class 4</option>
+<option value="5">Class 5</option>
+<option value="6">Class 6</option>
+<option value="7">Class 7</option>
+<option value="8">Class 8</option>
+<option value="9">Class 9</option>
+<option value="10">Class 10</option>
+<option value="11">Class 11</option>
+<option value="12">Class 12</option>
+
+</select>
+
+<br>
+
+<button onclick="showSubjects()">
+📚 Show Subjects
+</button>
+
+<p id="message"></p>
+
+</section>
+
+
+
+<!-- SUBJECTS -->
+
+<section id="subjects" class="box">
+
+<h2>📖 Subjects</h2>
+
+<p id="selectedInfo">
+Select your board and class.
+</p>
+
+<div id="subjectList"></div>
+
+</section>
+
+
+
+<!-- CHAPTERS -->
+
+<section id="chapters" class="box hidden">
+
+<h2 id="subjectTitle">📚 Chapters</h2>
+
+<div id="chapterList"></div>
+
+</section>
+
+
+
+<!-- NOTES -->
+
+<section id="notes" class="box hidden">
+
+<h2 id="noteTitle">📖 Notes</h2>
+
+<div id="noteContent"></div>
+
+</section>
+
+
+
+<!-- QUIZ -->
+
+<section id="quiz" class="box">
+
+<h2>🧠 Quick Quiz</h2>
+
+<p>
+<b>What is 5 + 5?</b>
+</p>
+
+<button class="quiz-option" onclick="checkQuiz(10)">
+A. 10
+</button>
+
+<button class="quiz-option" onclick="checkQuiz(15)">
+B. 15
+</button>
+
+<button class="quiz-option" onclick="checkQuiz(20)">
+C. 20
+</button>
+
+<button class="quiz-option" onclick="checkQuiz(5)">
+D. 5
+</button>
+
+<p id="quizResult"></p>
+
+</section>
+
+
+
+<!-- CALCULATOR -->
+
+<section id="calculator" class="box">
+
+<h2>🧮 Calculator</h2>
+
+<input
+type="number"
+id="num1"
+placeholder="First number"
+>
+
+<input
+type="number"
+id="num2"
+placeholder="Second number"
+>
+
+<br>
+
+<button onclick="calculate('+')">+</button>
+<button onclick="calculate('-')">−</button>
+<button onclick="calculate('*')">×</button>
+<button onclick="calculate('/')">÷</button>
+
+<h3 id="calcResult">
+Result:
+</h3>
+
+</section>
+
+
+
+<!-- CODING -->
+
+<section id="coding" class="box">
+
+<h2>💻 Learn Coding</h2>
+
+<h3>HTML</h3>
+
+<pre>
+&lt;h1&gt;Hello World&lt;/h1&gt;
+
+&lt;p&gt;I am learning HTML.&lt;/p&gt;
+</pre>
+
+
+<h3>Python</h3>
+
+<pre>
+name = "Hannan"
+
+print(name)
+</pre>
+
+<button onclick="startCoding()">
+🚀 Start Learning
+</button>
+
+<p id="codingMessage"></p>
+
+</section>
+
+
+</div>
+
+
+
+<footer>
+
+<h3>📚 Study Hub</h3>
+
+<p>Class 1 to 12 | Bihar Board & CBSE</p>
+
+<p>© 2026 Study Hub</p>
+
+</footer>
+
+
+
+<script>
+
+
+/* SUBJECT DATABASE */
+
+const subjects = {
+
+1: [
+"Hindi",
+"English",
+"Mathematics",
+"EVS"
+],
+
+2: [
+"Hindi",
+"English",
+"Mathematics",
+"EVS"
+],
+
+3: [
+"Hindi",
+"English",
+"Mathematics",
+"EVS"
+],
+
+4: [
+"Hindi",
+"English",
+"Mathematics",
+"EVS"
+],
+
+5: [
+"Hindi",
+"English",
+"Mathematics",
+"EVS"
+],
+
+6: [
+"Hindi",
+"English",
+"Mathematics",
+"Science",
+"Social Science"
+],
+
+7: [
+"Hindi",
+"English",
+"Mathematics",
+"Science",
+"Social Science"
+],
+
+8: [
+"Hindi",
+"English",
+"Mathematics",
+"Science",
+"Social Science"
+],
+
+9: [
+"Hindi",
+"English",
+"Mathematics",
+"Science",
+"Social Science"
+],
+
+10: [
+"Hindi",
+"English",
+"Mathematics",
+"Science",
+"Social Science"
+],
+
+11: [
+"Physics",
+"Chemistry",
+"Mathematics",
+"Biology",
+"Accountancy",
+"Business Studies",
+"Economics",
+"History",
+"Political Science"
+],
+
+12: [
+"Physics",
+"Chemistry",
+"Mathematics",
+"Biology",
+"Accountancy",
+"Business Studies",
+"Economics",
+"History",
+"Political Science"
+]
+
+};
+
+
+
+/* CHAPTER DATABASE */
+
+const chapters = {
+
+"Mathematics": [
+"Number System",
+"Algebra",
+"Geometry",
+"Mensuration",
+"Statistics"
+],
+
+"Science": [
+"Introduction to Science",
+"Matter",
+"Motion",
+"Force",
+"Energy"
+],
+
+"English": [
+"Grammar",
+"Reading",
+"Writing",
+"Literature"
+],
+
+"Hindi": [
+"व्याकरण",
+"गद्य",
+"पद्य",
+"लेखन"
+],
+
+"Social Science": [
+"History",
+"Geography",
+"Political Science",
+"Economics"
+],
+
+"Physics": [
+"Units and Measurements",
+"Motion",
+"Laws of Motion",
+"Work and Energy"
+],
+
+"Chemistry": [
+"Some Basic Concepts",
+"Structure of Atom",
+"Chemical Bonding",
+"Thermodynamics"
+],
+
+"Biology": [
+"The Living World",
+"Cell",
+"Plant Biology",
+"Human Biology"
+],
+
+"Accountancy": [
+"Introduction to Accounting",
+"Journal",
+"Ledger",
+"Trial Balance"
+],
+
+"Business Studies": [
+"Nature of Business",
+"Management",
+"Business Environment",
+"Marketing"
+],
+
+"Economics": [
+"Introduction",
+"Demand",
+"Supply",
+"Market",
+"National Income"
+],
+
+"History": [
+"Introduction to History",
+"Ancient History",
+"Medieval History",
+"Modern History"
+],
+
+"Political Science": [
+"Constitution",
+"Democracy",
+"Government",
+"Rights and Duties"
+],
+
+"EVS": [
+"My Family",
+"My School",
+"Plants",
+"Animals",
+"Environment"
+]
+
+};
+
+
+
+/* SHOW SUBJECTS */
+
+function showSubjects() {
+
+let board =
+document.getElementById("board").value;
+
+let className =
+document.getElementById("className").value;
+
+let message =
+document.getElementById("message");
+
+let list =
+document.getElementById("subjectList");
+
+
+if (board === "" || className === "") {
+
+message.innerHTML =
+"⚠️ Please select Board and Class.";
+
+return;
+
+}
+
+
+message.innerHTML =
+"✅ " + board +
+" - Class " +
+className +
+" selected.";
+
+
+document.getElementById("selectedInfo").innerHTML =
+"Board: <b>" + board +
+"</b> | Class: <b>" +
+className +
+"</b>";
+
+
+list.innerHTML = "";
+
+
+subjects[className].forEach(function(subject) {
+
+let card =
+document.createElement("div");
+
+card.className = "card";
+
+card.innerHTML =
+"📘 " + subject;
+
+card.onclick = function() {
+
+showChapters(subject);
+
+};
+
+list.appendChild(card);
+
+});
+
+}
+
+
+
+/* SHOW CHAPTERS */
+
+function showChapters(subject) {
+
+let section =
+document.getElementById("chapters");
+
+let title =
+document.getElementById("subjectTitle");
+
+let list =
+document.getElementById("chapterList");
+
+
+section.classList.remove("hidden");
+
+title.innerHTML =
+"📚 " + subject + " - Chapters";
+
+
+list.innerHTML = "";
+
+
+let data =
+chapters[subject];
+
+
+if (!data) {
+
+list.innerHTML =
+"<p>Chapters will be added soon.</p>";
+
+return;
+
+}
+
+
+data.forEach(function(chapter, index) {
+
+let div =
+document.createElement("div");
+
+div.className = "chapter";
+
+div.innerHTML =
+"<b>Chapter " +
+(index + 1) +
+":</b> " +
+chapter +
+"<br><button onclick=\"showNotes('" +
+subject +
+"','" +
+chapter +
+"')\">📖 Open Notes</button>";
+
+list.appendChild(div);
+
+});
+
+}
+
+
+
+/* SHOW NOTES */
+
+function showNotes(subject, chapter) {
+
+let section =
+document.getElementById("notes");
+
+let title =
+document.getElementById("noteTitle");
+
+let content =
+document.getElementById("noteContent");
+
+
+section.classList.remove("hidden");
+
+
+title.innerHTML =
+"📖 " + subject +
+" - " + chapter;
+
+
+content.innerHTML = `
+
+<h3>${chapter}</h3>
+
+<p>
+This is a sample study note for
+<b>${chapter}</b>.
+</p>
+
+<p>
+Students can read the chapter,
+practice questions and take quizzes
+from this section.
+</p>
+
+<h3>📝 Important Points</h3>
+
+<ul>
+<li>Understand the basic concept.</li>
+<li>Learn important definitions.</li>
+<li>Practice questions regularly.</li>
+<li>Revise the chapter.</li>
+</ul>
+
+`;
+
+section.scrollIntoView({
+behavior: "smooth"
+});
+
+}
+
+
+
+/* QUIZ */
+
+function checkQuiz(answer) {
+
+let result =
+document.getElementById("quizResult");
+
+
+if (answer === 10) {
+
+result.innerHTML =
+"✅ Correct Answer! 🎉";
+
+} else {
+
+result.innerHTML =
+"❌ Wrong Answer. Try again!";
+
+}
+
+}
+
+
+
+/* CALCULATOR */
+
+function calculate(operator) {
+
+let a =
+Number(
+document.getElementById("num1").value
+);
+
+let b =
+Number(
+document.getElementById("num2").value
+);
+
+let answer;
+
+
+if (operator === "+") {
+
+answer = a + b;
+
+}
+
+else if (operator === "-") {
+
+answer = a - b;
+
+}
+
+else if (operator === "*") {
+
+answer = a * b;
+
+}
+
+else if (operator === "/") {
+
+if (b === 0) {
+
+document.getElementById(
+"calcResult"
+).innerHTML =
+"❌ Cannot divide by zero.";
+
+return;
+
+}
+
+answer = a / b;
+
+}
+
+
+document.getElementById(
+"calcResult"
+).innerHTML =
+"Result: " + answer;
+
+}
+
+
+
+/* CODING */
+
+function startCoding() {
+
+document.getElementById(
+"codingMessage"
+).innerHTML =
+"🚀 Great! Keep learning HTML, CSS, JavaScript and Python.";
+
+}
+
+</script>
+
+</body>
+</html>
